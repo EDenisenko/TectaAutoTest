@@ -78,7 +78,7 @@ public class GlobalSteps extends ScenarioSteps {
     }
 
     @Step
-    public void go_to_add_ou_page(String OuTestName) {
-        onUOPage().go_to_ou_add_page(OuTestName);
+    public void go_to_add_ou_page(String OuTestName, String OuNameRegion, String OuAddres, String OuCity, String OuState, String OuZipCode) {
+        onUOPage().go_to_ou_add_page(OuTestName, OuNameRegion, OuAddres, OuCity, OuState, OuZipCode);
     }
 }

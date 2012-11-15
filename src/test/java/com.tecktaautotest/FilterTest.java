@@ -83,9 +83,10 @@ public class FilterTest {
     }
 
     @Test
-    public void Creat_Client_Test(){
+    public void Creat_Client_Test() throws InterruptedException {
         globalSteps.is_the_home_page();
-        globalSteps.login("tester","nestthis");
-        globalSteps.go_to_add_ou_page("My Tecta OPG Unit Test");
+        globalSteps.login("tester","testthis");
+        globalSteps.go_to_add_ou_page("My Tecta OPG Unit Test", "Central Plains", "600 S Riverfront Drive", "Mankato", "Minnesota", "56001");
+        Thread.sleep(5000);
     }
 }
