@@ -67,7 +67,7 @@ public class ClientAddPhotoPage extends PageObject {
         Thread.sleep(150000);
         element(saveclick).click();
         //element(saveclick).waitUntilVisible();
-        element(saveclick).waitUntilNotVisible();
+        element(saveclick).waitUntilVisible();
 
         }
 }

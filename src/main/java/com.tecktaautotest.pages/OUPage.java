@@ -60,4 +60,8 @@ public class OUPage extends PageObject{
        element(InputOuZipCode).type(ouZipCode);
        element(ClickSubmitButton).click();
     }
+
+    public void go_client_add_page() {
+
+    }
 }

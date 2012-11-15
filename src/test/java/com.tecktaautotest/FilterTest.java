@@ -87,6 +87,7 @@ public class FilterTest {
         globalSteps.is_the_home_page();
         globalSteps.login("tester","testthis");
         globalSteps.go_to_add_ou_page("My Tecta OPG Unit Test", "Central Plains", "600 S Riverfront Drive", "Mankato", "Minnesota", "56001");
+        globalSteps.go_to_client_page();
         Thread.sleep(5000);
     }
 }
