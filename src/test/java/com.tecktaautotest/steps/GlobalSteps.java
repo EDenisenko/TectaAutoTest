@@ -1,9 +1,6 @@
 package com.tecktaautotest.steps;
 
-import com.tecktaautotest.pages.ClientAddPhotoPage;
-import com.tecktaautotest.pages.ClientsPage;
-import com.tecktaautotest.pages.HomePage;
-import com.tecktaautotest.pages.UserPage;
+import com.tecktaautotest.pages.*;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -34,6 +31,9 @@ public class GlobalSteps extends ScenarioSteps {
     }
     public ClientAddPhotoPage onClientAddPhotoPage(){
         return getPages().currentPageAt(ClientAddPhotoPage.class);
+    }
+    public OUPage onUOPage(){
+        return getPages().currentPageAt(OUPage.class);
     }
 
     @Step
@@ -77,5 +77,8 @@ public class GlobalSteps extends ScenarioSteps {
         onClientAddPhotoPage().go_to_photo_add_page(clientname);
     }
 
-
+    @Step
+    public void go_to_add_ou_page(String OuTestName) {
+        onUOPage().go_to_ou_add_page(OuTestName);
+    }
 }

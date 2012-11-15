@@ -82,6 +82,10 @@ public class FilterTest {
         //then
     }
 
-    //@Test
-    //public void Creat_
+    @Test
+    public void Creat_Client_Test(){
+        globalSteps.is_the_home_page();
+        globalSteps.login("tester","nestthis");
+        globalSteps.go_to_add_ou_page("My Tecta OPG Unit Test");
+    }
 }
