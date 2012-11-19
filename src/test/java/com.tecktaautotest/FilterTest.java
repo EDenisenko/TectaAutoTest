@@ -48,15 +48,14 @@ public class FilterTest {
     }
 
     @Test
-    @Pending
     public void As_User_Check_Date_Filter_On_User_Page() throws InterruptedException {
         //given
         globalSteps.is_the_home_page();
-        globalSteps.login("portfoliotestuser","111213");
+        globalSteps.login("portfoliouser","111111");
         globalSteps.go_to_projects_page();
         //when
         globalSteps.select_filter_date("05/07/2008","22/09/2010");
-        //Thread.sleep(60000);
+        Thread.sleep(60000);
         //then
     }
 
@@ -83,11 +82,20 @@ public class FilterTest {
     }
 
     @Test
-    public void Creat_Client_Test() throws InterruptedException {
+    @Pending
+    public void Creat_Client_Test_OU() throws InterruptedException {
+        //given
         globalSteps.is_the_home_page();
         globalSteps.login("tester","testthis");
+        //when
         globalSteps.go_to_add_ou_page("My Tecta OPG Unit Test", "Central Plains", "600 S Riverfront Drive", "Mankato", "Minnesota", "56001");
-        globalSteps.go_to_client_page();
-        Thread.sleep(5000);
+    }
+
+    @Test
+    public void Create_New_Client_Test(){
+        globalSteps.is_the_home_page();
+        globalSteps.login("tester","testthis");
+        globalSteps.go_to_client_page("My Test Client","My Tecta OPG Unit Test", "600 S Riverfront Drive", "Mankato", "Minnesota", "56001");
+        globalSteps.add_facility_to_new_test_client("My Test Client");
     }
 }

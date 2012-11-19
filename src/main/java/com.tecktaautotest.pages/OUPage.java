@@ -44,6 +44,9 @@ public class OUPage extends PageObject{
     @FindBy(id="submit-btn")
     private WebElement ClickSubmitButton;
 
+    @FindBy(xpath = "")
+    private WebElement HomeLinkClick;
+
     public OUPage(WebDriver driver) {
         super(driver);
     }
@@ -59,9 +62,5 @@ public class OUPage extends PageObject{
        element(InputStateText).selectByVisibleText(ouState);
        element(InputOuZipCode).type(ouZipCode);
        element(ClickSubmitButton).click();
-    }
-
-    public void go_client_add_page() {
-
     }
 }

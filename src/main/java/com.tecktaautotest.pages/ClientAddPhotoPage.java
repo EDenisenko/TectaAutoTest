@@ -66,7 +66,6 @@ public class ClientAddPhotoPage extends PageObject {
         Runtime.getRuntime().exec("C:\\TectaHelpFiles\\OpenFile.exe");
         Thread.sleep(150000);
         element(saveclick).click();
-        //element(saveclick).waitUntilVisible();
         element(saveclick).waitUntilVisible();
 
         }

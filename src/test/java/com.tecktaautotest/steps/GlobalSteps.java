@@ -36,6 +36,11 @@ public class GlobalSteps extends ScenarioSteps {
         return getPages().currentPageAt(OUPage.class);
     }
 
+    public ClientPage onClientPage(){
+        return getPages().currentPageAt(ClientPage.class);
+
+    }
+
     @Step
     public void is_the_home_page() {
            onHomePage().open();
@@ -82,7 +87,12 @@ public class GlobalSteps extends ScenarioSteps {
         onUOPage().go_to_ou_add_page(OuTestName, OuNameRegion, OuAddres, OuCity, OuState, OuZipCode);
     }
 
-    public void go_to_client_page() {
-        onUOPage().go_client_add_page();
+    @Step
+    public void go_to_client_page(String ClientTestName, String OUTestName, String ClientTestAdress, String ClientTestCity, String ClientTestState, String ClientTestZipCode) {
+        onClientPage().go_client_add_page(ClientTestName, OUTestName, ClientTestAdress, ClientTestCity, ClientTestState, ClientTestZipCode);
+    }
+
+    public void add_facility_to_new_test_client(String ClientName) {
+        onClientPage().add_new_facility_to_new_client(ClientName);
     }
 }

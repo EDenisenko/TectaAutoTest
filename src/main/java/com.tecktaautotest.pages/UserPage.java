@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static java.lang.Math.random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Admin
@@ -27,17 +29,20 @@ public class UserPage extends PageObject {
     @FindBy(xpath = "//a[@id='project-date-search']")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//table[@class='ui-datepicker-calendar']//tr[3]/td[3]/a")
-    private WebElement inputLastDateClick;
-
-    @FindBy(id = "ui-datepicker-div")
-    private WebElement calendarFirst;
-
     @FindBy(id = "please-wait")
     private WebElement pleaseWait;
 
     @FindBy(id = "facility-id")
     private WebElement selectFacility;
+
+    @FindBy(xpath = "//select[@class='ui-datepicker-month']")
+    private WebElement inputFirstDateMonth;
+
+    @FindBy(xpath = "//select[@class='ui-datepicker-year']")
+    private WebElement inpuFirstDateYear;
+
+    @FindBy(xpath = "//table[@class='ui-datepicker-calendar']//a[contains(text(),\"15\")]")
+    private WebElement inputFirstDateDay;
 
     public UserPage(WebDriver driver) {
         super(driver);
@@ -49,22 +54,14 @@ public class UserPage extends PageObject {
 
     public void select_first_last_date(String firstdate, String lastdate) {
         element(inputFirstDate).click();
-        element(calendarFirst).waitUntilVisible();
-        //element(calendarFirst).waitUntilNotVisible();
-        element(inputFirstDate).type(firstdate);
-
+        element(inputFirstDateMonth).selectByIndex((int)(Math.random()*12)+1);
+        element(inpuFirstDateYear).selectByIndex((int)(Math.random()*6)+1);
+        element(inputFirstDateDay).click();
         element(inputLastDate).click();
-        //element(calendarFirst).waitUntilNotVisible();
-        element(calendarFirst).waitUntilVisible();
-        element(inputLastDate).type(lastdate);
-        element(calendarFirst).waitUntilNotVisible();
-
-        //element(inputLastDateClick).click();
-        getDriver().findElement(By.xpath("//a[@id='project-date-search']")).submit();
-        element(pleaseWait).waitUntilNotVisible();
-        /*element(searchButton).click();
-        element(pleaseWait).waitUntilNotVisible();
-        element(searchButton).click();*/
+        element(inputFirstDateMonth).selectByIndex((int)(Math.random()*12)+1);
+        element(inpuFirstDateYear).selectByIndex((int)(Math.random()*12)+6);
+        element(inputFirstDateDay).click();
+        element(searchButton).click();
     }
 
     public void select_facility_filter(String facilityname) {
