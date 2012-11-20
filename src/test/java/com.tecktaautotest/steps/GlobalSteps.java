@@ -95,4 +95,8 @@ public class GlobalSteps extends ScenarioSteps {
     public void add_facility_to_new_test_client(String ClientName) {
         onClientPage().add_new_facility_to_new_client(ClientName);
     }
+
+    public void assert_the_date_incorect() throws InterruptedException {
+        onUserPage().assert_incorect_the_date();
+    }
 }

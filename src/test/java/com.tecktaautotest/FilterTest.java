@@ -55,8 +55,8 @@ public class FilterTest {
         globalSteps.go_to_projects_page();
         //when
         globalSteps.select_filter_date("05/07/2008","22/09/2010");
-        Thread.sleep(60000);
         //then
+        globalSteps.assert_the_date_incorect();
     }
 
     @Test
@@ -92,6 +92,7 @@ public class FilterTest {
     }
 
     @Test
+    @Pending
     public void Create_New_Client_Test(){
         globalSteps.is_the_home_page();
         globalSteps.login("tester","testthis");
