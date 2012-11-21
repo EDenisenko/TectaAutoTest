@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import javax.security.auth.login.LoginContext;
 import java.awt.*;
 import java.io.IOException;
 
@@ -34,8 +35,11 @@ public class FilterTest {
 
     @net.thucydides.core.annotations.Steps
     public GlobalSteps globalSteps;
-
+    public  String Login = System.getProperty("Login");
+    public  String Password = System.getProperty("Password");
+    public  String Facility = System.getProperty("Facility");
     @Test
+    @Pending
     public void As_Admin_Check_OU_Filter_On_Clients_Page() throws InterruptedException {
         //given
         globalSteps.is_the_home_page();
@@ -51,10 +55,10 @@ public class FilterTest {
     public void As_User_Check_Date_Filter_On_User_Page() throws InterruptedException {
         //given
         globalSteps.is_the_home_page();
-        globalSteps.login("portfoliouser","111111");
-        globalSteps.go_to_projects_page();
+        globalSteps.login(Login,Password);
+        globalSteps.go_to_projects_page(Facility);
         //when
-        globalSteps.select_filter_date("05/07/2008","22/09/2010");
+        globalSteps.select_filter_date();
         //then
         globalSteps.assert_the_date_incorect();
     }
@@ -64,13 +68,15 @@ public class FilterTest {
     public void As_User_Check_Facility_Filter_On_User_Page(){
         //given
         globalSteps.is_the_home_page();
-        globalSteps.login("portfoliotestuser","111213");
-        globalSteps.go_to_projects_page();
+        globalSteps.login("tester","testthis");
+        globalSteps.go_to_projects_page("Coca-Cola");
         //when
-        globalSteps.select_filter_facility("100 East Pratt Street");
+        globalSteps.Select_Filtyer_Value();
         //then
+        globalSteps.Assert_Facility_Filter();
     }
     @Test
+    @Pending
     public void Add_Photo_To_Project() throws IOException, AWTException, InterruptedException {
         //given
         globalSteps.is_the_home_page();

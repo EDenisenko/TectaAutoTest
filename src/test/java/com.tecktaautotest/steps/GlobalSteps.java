@@ -63,18 +63,13 @@ public class GlobalSteps extends ScenarioSteps {
     }
 
     @Step
-    public void go_to_projects_page() {
-        onUserPage().go_to_project_page();
+    public void go_to_projects_page(String NameFacility) {
+        onUserPage().go_to_project_page(NameFacility);
     }
 
     @Step
-    public void select_filter_date(String firstdate, String lastdate) {
-        onUserPage().select_first_last_date(firstdate,lastdate);
-    }
-
-    @Step
-    public void select_filter_facility(String facilityname) {
-        onUserPage().select_facility_filter(facilityname);
+    public void select_filter_date() {
+        onUserPage().select_first_last_date();
     }
 
     @Step
@@ -98,5 +93,13 @@ public class GlobalSteps extends ScenarioSteps {
 
     public void assert_the_date_incorect() throws InterruptedException {
         onUserPage().assert_incorect_the_date();
+    }
+
+    public void Select_Filtyer_Value() {
+        onUserPage().select_value_filter();
+    }
+
+    public void Assert_Facility_Filter() {
+        onUserPage().check_facility_filter();
     }
 }

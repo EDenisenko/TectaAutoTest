@@ -54,15 +54,32 @@ public class UserPage extends PageObject {
     @FindBy(xpath = "//th/a[contains(text(),\"Date\")]")
     private WebElement SortDateClick;
 
+    @FindBy(id = "grid-filter-input")
+    private WebElement InputNameFacility;
+
+    @FindBy(xpath = "//span[@class='button']/span/button[@type='submit']")
+    private WebElement ClickSearchButton;
+
+    @FindBy(xpath = "//a[contains(text(),\"Coca-Cola Refreshments USA\")]")
+    private WebElement ClickLinkFacility;
+
+    private String FacilityCount="//select[@id='facility-id']/option";
+
+    @FindBy(xpath = "//select[@id='facility-id']")
+    private WebElement SelectedFacility;
+
     public UserPage(WebDriver driver) {
         super(driver);
     }
 
-    public void go_to_project_page() {
+    public void go_to_project_page(String nameFacility) {
+        element(InputNameFacility).type(nameFacility);
+        element(ClickSearchButton).click();
+        element(ClickLinkFacility).click();
         element(projectLink).click();
     }
 
-    public void select_first_last_date(String firstdate, String lastdate) {
+    public void select_first_last_date() {
         element(inputFirstDate).click();
         element(inputFirstDateMonth).selectByIndex((int)(Math.random()*12));
         element(inpuFirstDateYear).selectByIndex((int)(Math.random()*6));
@@ -74,13 +91,9 @@ public class UserPage extends PageObject {
         element(searchButton).click();
     }
 
-    public void select_facility_filter(String facilityname) {
-        element(selectFacility).click();
-        element(selectFacility).selectByValue(facilityname);
-    }
-
     public void assert_incorect_the_date() throws InterruptedException {
         String StrFirstDate = element(inputLastDate).getTextValue();
+        Thread.sleep(4000);
         String StrFirstDateRes = element(DateResult).getText();
         Thread.sleep(4000);
         element(SortDateClick).click();
@@ -94,5 +107,20 @@ public class UserPage extends PageObject {
         LDR = Integer.parseInt(StrLastDateRes.substring(6,10)+StrLastDateRes.substring(0,2)+StrLastDateRes.substring(3,5));
         if ((FD>=FDR)&&(LD<=LDR)){}
         else assertThat("12", is("11"));
+    }
+
+    public void select_value_filter() {
+        int count = getDriver().findElements(By.xpath(FacilityCount)).size();
+        element(SelectedFacility).selectByIndex((int)(Math.random()*count));
+        element(pleaseWait).waitUntilVisible();
+    }
+
+    public void check_facility_filter() {
+        if (element("//div[@class='pager a-right']/a[@id='pager-go']").isVisible()){
+
+        }
+        else {
+
+        };
     }
 }
