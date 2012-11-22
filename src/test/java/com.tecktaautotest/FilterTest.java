@@ -48,7 +48,14 @@ public class FilterTest {
         globalSteps.login(Login,Password);
         globalSteps.go_to_user_report_page_lite_step(Facility);
         globalSteps.check_reports_lite();
+    }
 
+    @Test
+    public void As_Admin_Check_Creat_Report_Edition() throws IOException, InterruptedException {
+        globalSteps.is_the_home_page();
+        globalSteps.login(Login,Password);
+        globalSteps.go_to_user_report_page_hard_step(Facility);
+        globalSteps.check_reports();
     }
 
     @Test
@@ -91,7 +98,7 @@ public class FilterTest {
     public void Add_Photo_To_Project() throws IOException, AWTException, InterruptedException {
         //given
         globalSteps.is_the_home_page();
-        globalSteps.login(Login,Password);
+        globalSteps.login(Login, Password);
         globalSteps.go_to_add_photo_page(Facility);
         //when
         //then

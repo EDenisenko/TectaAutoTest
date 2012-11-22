@@ -141,9 +141,31 @@ public class UserPage extends PageObject {
     public void check_lite_reports() throws InterruptedException, IOException {
         int count = getDriver().findElements(By.xpath("html/body/div[2]/div[2]/div[4]/table/tbody/tr")).size();
         for( int i=2; i<count; i++ ){
-            element("//table[@class='data-table']/tbody/tr["+2+"]/td/a").click();
+            element("//table[@class='data-table']/tbody/tr["+i+"]/td/a").click();
             Thread.sleep(1000);
             Runtime.getRuntime().exec("C:\\TectaHelpFiles\\Esc.exe");
             }
+    }
+
+    public void go_to_report_page(String facility) {
+        element(InputNameFacility).type(facility);
+        element(ClickSearchButton).click();
+        element(ClickLinkFacility).click();
+        element(projectLink).click();
+    }
+
+    public void report_check() throws InterruptedException, IOException {
+        int count = getDriver().findElements(By.xpath("//table[@class='data-table']/tbody/tr")).size();
+        element("//table[@class='data-table']/tbody/tr["+((int)(Math.random()*(count-2))+2)+"]/td/a[2]").click();
+        int coutnrep = getDriver().findElements(By.xpath("//table[@class='data-table']/tbody/tr")).size();
+        element("//li[@id='h-reports']/a").click();
+        for ( int i=2; i<6; i++){
+                element("//table[@class='data-table']/tbody/tr["+i+"]/td/a").click();
+                Thread.sleep(1000);
+                Runtime.getRuntime().exec("C:\\TectaHelpFiles\\Esc.exe");
+        }
+        element("//select[@id='report-master_project']").selectByIndex((int)(Math.random()*(coutnrep)));
+        element("//form/a[1]/span").click();
+        Runtime.getRuntime().exec("C:\\TectaHelpFiles\\Esc.exe");
     }
 }

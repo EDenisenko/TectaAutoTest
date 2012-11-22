@@ -110,4 +110,12 @@ public class GlobalSteps extends ScenarioSteps {
     public void check_reports_lite() throws InterruptedException, IOException {
         onUserPage().check_lite_reports();
     }
+
+    public void go_to_user_report_page_hard_step(String facility) {
+        onUserPage().go_to_report_page(facility);
+    }
+
+    public void check_reports() throws IOException, InterruptedException {
+        onUserPage().report_check();
+    }
 }
