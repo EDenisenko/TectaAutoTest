@@ -1,5 +1,9 @@
 package com.tecktaautotest.pages;
 
+import autoitx4java.AutoItX;
+import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.Dispatch;
+import com.jacob.com.LibraryLoader;
 import flexjson.transformer.StringTransformer;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.Alert;
@@ -8,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
@@ -138,18 +143,16 @@ public class UserPage extends PageObject {
     }
 
     public void check_lite_reports() throws InterruptedException, IOException {
+        //File file = new File("lib", "jacob-1.17-M2-x64.dll"); //path to the jacob dll
+        //System.setProperty(LibraryLoader.JACOB_DLL_PATH, file.getAbsolutePath());
+        //AutoItX x = new AutoItX();
+        //objActiveXComponent = new ActiveXComponent("randomCOMObjectName");
+        //result = Dispatch.call(objActiveXComponent, "myMethod", input);
         int count = getDriver().findElements(By.xpath("html/body/div[2]/div[2]/div[4]/table/tbody/tr")).size();
         for( int i=2; i<count; i++ ){
-            String str = getDriver().getWindowHandle();
-            element("//table[@class='data-table']/tbody/tr["+i+"]/td/a").click();
-            getDriver().switchTo().
-            }
-            //getDriver().switchTo().window(handle).close();
-            //getDriver().switchTo().window(str);
-            //Alert alert = getDriver().switchTo().alert();
-            //Runtime.getRuntime().exec("C:\\TectaHelpFiles\\Esc.exe");
-            //String str = getDriver().getWindowHandle();
-            //getDriver().switchTo().window("Save").close();
+            element("//table[@class='data-table']/tbody/tr["+2+"]/td/a").click();
+            Thread.sleep(1000);
+            Runtime.getRuntime().exec("C:\\TectaHelpFiles\\Esc.exe");
             }
     }
 }

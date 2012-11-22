@@ -35,12 +35,12 @@ public class FilterTest {
 
     @net.thucydides.core.annotations.Steps
     public GlobalSteps globalSteps;
-    // public  String Login = System.getProperty("Login");
-    //public  String Password = System.getProperty("Password");
-    //public  String Facility = System.getProperty("Facility");
-    public  String Login = "tester";
-    public  String Password = "testthis";
-    public  String Facility = "coca-cola";
+    public  String Login = System.getProperty("Login");
+    public  String Password = System.getProperty("Password");
+    public  String Facility = System.getProperty("Facility");
+    //public  String Login = "tester";
+    //public  String Password = "testthis";
+    //public  String Facility = "coca-cola";
 
     @Test
     public void As_Admin_Check_Create_Reports() throws InterruptedException, IOException {
@@ -52,11 +52,10 @@ public class FilterTest {
     }
 
     @Test
-    @Pending
     public void As_Admin_Check_OU_Filter_On_Clients_Page() throws InterruptedException {
         //given
         globalSteps.is_the_home_page();
-        globalSteps.login("tester","testthis");
+        globalSteps.login(Login,Password);
         //when
         globalSteps.select_filter_ou("Tecta America Corp.");
 
@@ -65,7 +64,6 @@ public class FilterTest {
     }
 
     @Test
-    @Pending
     public void As_User_Check_Date_Filter_On_User_Page() throws InterruptedException {
         //given
         globalSteps.is_the_home_page();
@@ -90,13 +88,11 @@ public class FilterTest {
         globalSteps.Assert_Facility_Filter();
     }
     @Test
-    @Pending
     public void Add_Photo_To_Project() throws IOException, AWTException, InterruptedException {
         //given
         globalSteps.is_the_home_page();
-        globalSteps.login("tester","testthis");
-        globalSteps.go_to_add_photo_page("Coca-Cola");
-        //Thread.sleep(150000);
+        globalSteps.login(Login,Password);
+        globalSteps.go_to_add_photo_page(Facility);
         //when
         //then
     }
