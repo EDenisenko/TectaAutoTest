@@ -1,9 +1,5 @@
 package com.tecktaautotest.pages;
 
-import autoitx4java.AutoItX;
-import com.jacob.activeX.ActiveXComponent;
-import com.jacob.com.Dispatch;
-import com.jacob.com.LibraryLoader;
 import flexjson.transformer.StringTransformer;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.Alert;
@@ -143,11 +139,6 @@ public class UserPage extends PageObject {
     }
 
     public void check_lite_reports() throws InterruptedException, IOException {
-        //File file = new File("lib", "jacob-1.17-M2-x64.dll"); //path to the jacob dll
-        //System.setProperty(LibraryLoader.JACOB_DLL_PATH, file.getAbsolutePath());
-        //AutoItX x = new AutoItX();
-        //objActiveXComponent = new ActiveXComponent("randomCOMObjectName");
-        //result = Dispatch.call(objActiveXComponent, "myMethod", input);
         int count = getDriver().findElements(By.xpath("html/body/div[2]/div[2]/div[4]/table/tbody/tr")).size();
         for( int i=2; i<count; i++ ){
             element("//table[@class='data-table']/tbody/tr["+2+"]/td/a").click();
