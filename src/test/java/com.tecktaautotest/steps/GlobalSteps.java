@@ -102,4 +102,12 @@ public class GlobalSteps extends ScenarioSteps {
     public void Assert_Facility_Filter() {
         onUserPage().check_facility_filter();
     }
+
+    public void go_to_user_report_page_lite_step(String facility) {
+        onUserPage().go_to_user_report_page_lite_step(facility);
+    }
+
+    public void check_reports_lite() throws InterruptedException, IOException {
+        onUserPage().check_lite_reports();
+    }
 }

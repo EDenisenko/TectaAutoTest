@@ -35,9 +35,22 @@ public class FilterTest {
 
     @net.thucydides.core.annotations.Steps
     public GlobalSteps globalSteps;
-    public  String Login = System.getProperty("Login");
-    public  String Password = System.getProperty("Password");
-    public  String Facility = System.getProperty("Facility");
+    // public  String Login = System.getProperty("Login");
+    //public  String Password = System.getProperty("Password");
+    //public  String Facility = System.getProperty("Facility");
+    public  String Login = "tester";
+    public  String Password = "testthis";
+    public  String Facility = "coca-cola";
+
+    @Test
+    public void As_Admin_Check_Create_Reports() throws InterruptedException, IOException {
+        globalSteps.is_the_home_page();
+        globalSteps.login(Login,Password);
+        globalSteps.go_to_user_report_page_lite_step(Facility);
+        globalSteps.check_reports_lite();
+
+    }
+
     @Test
     @Pending
     public void As_Admin_Check_OU_Filter_On_Clients_Page() throws InterruptedException {
@@ -52,10 +65,11 @@ public class FilterTest {
     }
 
     @Test
+    @Pending
     public void As_User_Check_Date_Filter_On_User_Page() throws InterruptedException {
         //given
         globalSteps.is_the_home_page();
-        globalSteps.login(Login,Password);
+        globalSteps.login(Login, Password);
         globalSteps.go_to_projects_page(Facility);
         //when
         globalSteps.select_filter_date();

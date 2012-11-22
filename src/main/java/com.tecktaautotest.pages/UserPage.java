@@ -8,6 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
+import java.util.Set;
+
 import static java.lang.Math.random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -68,6 +71,9 @@ public class UserPage extends PageObject {
     @FindBy(xpath = "//select[@id='facility-id']")
     private WebElement SelectedFacility;
 
+    @FindBy(xpath = "//li[@id='h-reports']/a")
+    private WebElement ClickLinkReports;
+
     public UserPage(WebDriver driver) {
         super(driver);
     }
@@ -122,5 +128,28 @@ public class UserPage extends PageObject {
         else {
 
         };
+    }
+
+    public void go_to_user_report_page_lite_step(String facility) {
+        element(InputNameFacility).type(facility);
+        element(ClickSearchButton).click();
+        element(ClickLinkFacility).click();
+        element(ClickLinkReports).click();
+    }
+
+    public void check_lite_reports() throws InterruptedException, IOException {
+        int count = getDriver().findElements(By.xpath("html/body/div[2]/div[2]/div[4]/table/tbody/tr")).size();
+        for( int i=2; i<count; i++ ){
+            String str = getDriver().getWindowHandle();
+            element("//table[@class='data-table']/tbody/tr["+i+"]/td/a").click();
+            getDriver().switchTo().
+            }
+            //getDriver().switchTo().window(handle).close();
+            //getDriver().switchTo().window(str);
+            //Alert alert = getDriver().switchTo().alert();
+            //Runtime.getRuntime().exec("C:\\TectaHelpFiles\\Esc.exe");
+            //String str = getDriver().getWindowHandle();
+            //getDriver().switchTo().window("Save").close();
+            }
     }
 }
