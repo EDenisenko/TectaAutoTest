@@ -64,10 +64,10 @@ public class FilterTest {
         globalSteps.is_the_home_page();
         globalSteps.login(Login,Password);
         //when
-        globalSteps.select_filter_ou("Tecta America Corp.");
+        globalSteps.select_filter_ou("Tecta America Corp");
 
         //then
-        globalSteps.assert_filtration_ou_parameter("Tecta America Corp.");
+        globalSteps.assert_filtration_ou_parameter("Tecta America Corp");
     }
 
     @Test
