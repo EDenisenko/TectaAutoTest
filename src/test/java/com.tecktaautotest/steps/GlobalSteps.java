@@ -99,7 +99,7 @@ public class GlobalSteps extends ScenarioSteps {
         onUserPage().select_value_filter();
     }
 
-    public void Assert_Facility_Filter() {
+    public void Assert_Facility_Filter() throws InterruptedException {
         onUserPage().check_facility_filter();
     }
 
@@ -117,5 +117,21 @@ public class GlobalSteps extends ScenarioSteps {
 
     public void check_reports() throws IOException, InterruptedException {
         onUserPage().report_check();
+    }
+
+    public void select_progect_type_value() {
+        onUserPage().select_project_type_value();
+    }
+
+    public void assert_select_project_type_value() {
+        onUserPage().assert_project_type_value();
+    }
+
+    public void select_project_type_and_facility_filter() {
+        onUserPage().select_project_type_and_value_filter();
+    }
+
+    public void assert_project_type_and_facility_filter() {
+        onUserPage().assert_project_type_and_facility_filter();
     }
 }

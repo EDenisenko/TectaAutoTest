@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
+import static java.lang.Math.getExponent;
 import static java.lang.Math.random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -118,17 +119,21 @@ public class UserPage extends PageObject {
 
     public void select_value_filter() {
         int count = getDriver().findElements(By.xpath(FacilityCount)).size();
-        element(SelectedFacility).selectByIndex((int)(Math.random()*count));
-        element(pleaseWait).waitUntilVisible();
+        element(SelectedFacility).selectByIndex((int)(Math.random()*(count-2)+2));
+        element(pleaseWait).waitUntilNotVisible();
     }
 
-    public void check_facility_filter() {
-        if (element("//div[@class='pager a-right']/a[@id='pager-go']").isVisible()){
-
+    public void check_facility_filter() throws InterruptedException {
+        int count = getDriver().findElements(By.xpath("//table[@class='data-table']/tbody/tr")).size();
+        for (int i=2; i<count; i++){
+            if (element("//table[@class='data-table']/tbody/tr[2]/td").getText()=="No Project Data to Display"){
+                i=count;
+            }
+            else{
+                String str= element("//select[@id='facility-id']").getSelectedVisibleTextValue();
+                element("//table[@class='data-table']/tbody/tr["+i+"]/td[1]/a[contains(text(),\""+str+"\")]").isEnabled();
+            }
         }
-        else {
-
-        };
     }
 
     public void go_to_user_report_page_lite_step(String facility) {
@@ -167,5 +172,49 @@ public class UserPage extends PageObject {
         element("//select[@id='report-master_project']").selectByIndex((int)(Math.random()*(coutnrep)));
         element("//form/a[1]/span").click();
         Runtime.getRuntime().exec("C:\\TectaHelpFiles\\Esc.exe");
+    }
+
+    public void select_project_type_value() {
+        int count = getDriver().findElements(By.xpath("//select[@id='projecttype-id']/option")).size();
+        element("//select[@id='projecttype-id']").selectByIndex((int)(Math.random()*(count-2)+2));
+        element(pleaseWait).waitUntilNotVisible();
+
+    }
+
+    public void assert_project_type_value() {
+        int count = getDriver().findElements(By.xpath("//table[@class='data-table']/tbody/tr")).size();
+        for (int i=2; i<count; i++){
+            if (element("//table[@class='data-table']/tbody/tr[2]/td").getText()=="No Project Data to Display"){
+                i=count;
+            }
+            else{
+                String str= element("//select[@id='projecttype-id']").getSelectedVisibleTextValue();
+                element("//table[@class='data-table']/tbody/tr["+i+"]/td[1]/a[contains(text(),\""+str+"\")]").isEnabled();
+            }
+        }
+    }
+
+    public void select_project_type_and_value_filter() {
+        int count = getDriver().findElements(By.xpath(FacilityCount)).size();
+        element(SelectedFacility).selectByIndex((int)(Math.random()*(count-2)+2));
+        element(pleaseWait).waitUntilNotVisible();
+        int cou = getDriver().findElements(By.xpath("//select[@id='projecttype-id']/option")).size();
+        element("//select[@id='projecttype-id']").selectByIndex((int)(Math.random()*(cou-2)+2));
+        element(pleaseWait).waitUntilNotVisible();
+    }
+
+    public void assert_project_type_and_facility_filter() {
+        int count = getDriver().findElements(By.xpath("//table[@class='data-table']/tbody/tr")).size();
+        for (int i=2; i<count; i++){
+            if (element("//table[@class='data-table']/tbody/tr[2]/td").getText()=="No Project Data to Display"){
+                i=count;
+            }
+            else{
+                String str= element("//select[@id='projecttype-id']").getSelectedVisibleTextValue();
+                String st= element("//select[@id='facility-id']").getSelectedVisibleTextValue();
+                element("//table[@class='data-table']/tbody/tr["+i+"]/td[1]/a[contains(text(),\""+str+"\")]").isEnabled();
+                element("//table[@class='data-table']/tbody/tr["+i+"]/td[1]/a[contains(text(),\""+st+"\")]").isEnabled();
+            }
+        }
     }
 }

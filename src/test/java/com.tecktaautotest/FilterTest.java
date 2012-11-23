@@ -71,7 +71,7 @@ public class FilterTest {
     }
 
     @Test
-    public void As_User_Check_Date_Filter_On_User_Page() throws InterruptedException {
+    public void As_Adnin_Check_Date_Filter_On_User_Page() throws InterruptedException {
         //given
         globalSteps.is_the_home_page();
         globalSteps.login(Login, Password);
@@ -83,17 +83,35 @@ public class FilterTest {
     }
 
     @Test
-    @Pending
-    public void As_User_Check_Facility_Filter_On_User_Page(){
+    public void As_Admin_Check_Facility_Filter_On_User_Page() throws InterruptedException {
         //given
         globalSteps.is_the_home_page();
-        globalSteps.login("tester","testthis");
-        globalSteps.go_to_projects_page("Coca-Cola");
+        globalSteps.login(Login, Password);
+        globalSteps.go_to_projects_page(Facility);
         //when
         globalSteps.Select_Filtyer_Value();
         //then
         globalSteps.Assert_Facility_Filter();
     }
+
+    @Test
+    public void As_Admin_Check_Progect_Type_Filter_On_User_Page(){
+        globalSteps.is_the_home_page();
+        globalSteps.login(Login,Password);
+        globalSteps.go_to_projects_page(Facility);
+        globalSteps.select_progect_type_value();
+        globalSteps.assert_select_project_type_value();
+    }
+
+    @Test
+    public void As_Admin_Check_Project_Type_And_Facility_Filter_On_User_Page(){
+        globalSteps.is_the_home_page();
+        globalSteps.login(Login,Password);
+        globalSteps.go_to_projects_page(Facility);
+        globalSteps.select_project_type_and_facility_filter();
+        globalSteps.assert_project_type_and_facility_filter();
+    }
+
     @Test
     public void Add_Photo_To_Project() throws IOException, AWTException, InterruptedException {
         //given
