@@ -37,12 +37,12 @@ public class Filter {
 
     @net.thucydides.core.annotations.Steps
     public GlobalSteps globalSteps;
-    //public  String Login = System.getProperty("Login");
-    //public  String Password = System.getProperty("Password");
-    //public  String Facility = System.getProperty("Facility");
-    public  String Login = "tester";
-    public  String Password = "testthis";
-    public  String Facility = "coca-cola";
+    public  String Login = System.getProperty("Login");
+    public  String Password = System.getProperty("Password");
+    public  String Facility = System.getProperty("Facility");
+    //public  String Login = "tester";
+    //public  String Password = "testthis";
+    //public  String Facility = "coca-cola";
 
     @Test
     public void As_Admin_Check_OU_Filter_On_Clients_Page() throws InterruptedException {
