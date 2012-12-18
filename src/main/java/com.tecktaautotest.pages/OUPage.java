@@ -47,6 +47,9 @@ public class OUPage extends PageObject{
     @FindBy(xpath = "")
     private WebElement HomeLinkClick;
 
+    @FindBy(id = "please-wait")
+    private WebElement pleaseWait;
+
     public OUPage(WebDriver driver) {
         super(driver);
     }

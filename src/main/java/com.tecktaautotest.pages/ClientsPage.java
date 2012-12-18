@@ -35,7 +35,7 @@ public class ClientsPage extends PageObject {
     public void select_ou_filter(String filtertext) {
         Locatable hoverItem = (Locatable) dropdownMenuOuFilter;
         Mouse mouse = ((HasInputDevices) getDriver()).getMouse();
-        mouse.mouseMove(hoverItem.getCoordinates());
+        mouse.click(hoverItem.getCoordinates());
         element(dropdownMenu).waitUntilVisible();
         getDriver().findElement(By.xpath("//a[contains(text(),\""+filtertext+"\")]")).click();
         element(pleaseWait).waitUntilNotVisible();

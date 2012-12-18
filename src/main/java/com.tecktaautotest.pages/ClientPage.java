@@ -77,6 +77,9 @@ public class ClientPage extends PageObject {
     @FindBy(xpath = "//span[@class='button']/span/button[@type='submit']")
     private WebElement FacilityButtonSubmit;
 
+    @FindBy(id = "please-wait")
+    private WebElement pleaseWait;
+
     public ClientPage(WebDriver driver) {
         super(driver);
     }

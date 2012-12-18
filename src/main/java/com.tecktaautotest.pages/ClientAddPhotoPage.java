@@ -40,7 +40,7 @@ public class ClientAddPhotoPage extends PageObject {
     private WebElement linksection;
 
     @FindBy(xpath = "//li[@class='proj-3']/a")
-    private WebElement nabphoto;
+    private WebElement tabphoto;
 
     @FindBy(xpath = "//div[@class='uploader-container']/object")
     private WebElement openclick;
@@ -58,11 +58,14 @@ public class ClientAddPhotoPage extends PageObject {
         public void go_to_photo_add_page(String clientname) throws IOException, InterruptedException {
         element(serchtext).type(clientname);
         element(searchbutton).click();
+        element(pleaseWait).waitUntilNotVisible();
         element(clientlink).click();
         element(facilitylink).click();
         element(photopagelink).click();
         element(linksection).click();
-        element(nabphoto).click();
+        Thread.sleep(6000);
+        element(tabphoto).click();
+        Thread.sleep(3000);
         Runtime.getRuntime().exec("C:\\TectaHelpFiles\\OpenFile.exe");
         Thread.sleep(150000);
         element(saveclick).click();

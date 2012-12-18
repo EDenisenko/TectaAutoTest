@@ -2,18 +2,21 @@ package com.tecktaautotest.pages;
 
 import flexjson.transformer.StringTransformer;
 import net.thucydides.core.pages.PageObject;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.support.FindBy;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
 import java.util.Set;
 
 import static java.lang.Math.getExponent;
 import static java.lang.Math.random;
+import static java.nio.file.Files.setAttribute;
+import static org.cyberneko.html.HTMLElements.getElement;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -76,6 +79,15 @@ public class UserPage extends PageObject {
     @FindBy(xpath = "//li[@id='h-reports']/a")
     private WebElement ClickLinkReports;
 
+    @FindBy(xpath = "//li[@id='h-facilities']/a")
+    private WebElement FacilityLink;
+
+    @FindBy(xpath = "//th[@class='relative region-code region-square ']/ul/li[@class='drop-down-menu-container']")
+    private WebElement dropdownMenuRegionFilter;
+
+    @FindBy(xpath = "//th[@class='relative region-code']/ul/li/a').setAttribute('true','10')")
+    private WebElement DropDownMenu;
+
     public UserPage(WebDriver driver) {
         super(driver);
     }
@@ -83,6 +95,7 @@ public class UserPage extends PageObject {
     public void go_to_project_page(String nameFacility) {
         element(InputNameFacility).type(nameFacility);
         element(ClickSearchButton).click();
+        element(pleaseWait).waitUntilNotVisible();
         element(ClickLinkFacility).click();
         element(projectLink).click();
     }
@@ -139,6 +152,7 @@ public class UserPage extends PageObject {
     public void go_to_user_report_page_lite_step(String facility) {
         element(InputNameFacility).type(facility);
         element(ClickSearchButton).click();
+        element(pleaseWait).waitUntilNotVisible();
         element(ClickLinkFacility).click();
         element(ClickLinkReports).click();
     }
@@ -155,6 +169,7 @@ public class UserPage extends PageObject {
     public void go_to_report_page(String facility) {
         element(InputNameFacility).type(facility);
         element(ClickSearchButton).click();
+        element(pleaseWait).waitUntilNotVisible();
         element(ClickLinkFacility).click();
         element(projectLink).click();
     }
@@ -216,5 +231,53 @@ public class UserPage extends PageObject {
                 element("//table[@class='data-table']/tbody/tr["+i+"]/td[1]/a[contains(text(),\""+st+"\")]").isEnabled();
             }
         }
+    }
+
+    public void go_to_facility_select(String facility) {
+        element(InputNameFacility).type(facility);
+        element(ClickSearchButton).click();
+        element(pleaseWait).waitUntilNotVisible();
+        element(ClickLinkFacility).click();
+        element(FacilityLink).click();
+        }
+
+    public void select_region_filter() throws InterruptedException, IOException {
+        int count = getDriver().findElements(By.xpath("//ul[@class='drop-down-menu filter-drop-down-menu drop-down-menu-region']/li")).size();
+        WebElement element = getDriver().findElement(By.xpath("//th[@class='relative region-code']/ul/li/ul"));
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].setAttribute('style', arguments[1]);",element, "display: block;");
+        int i =  (int)(Math.random()*(count-4)+4);
+        element(By.xpath("//ul[@class='drop-down-menu filter-drop-down-menu drop-down-menu-region']/li["+i+"]/a")).waitUntilVisible();
+        String Str = getDriver().findElement(By.xpath("//ul[@class='drop-down-menu filter-drop-down-menu drop-down-menu-region']/li["+i+"]/a")).getText();
+        getDriver().findElement(By.xpath("//ul[@class='drop-down-menu filter-drop-down-menu drop-down-menu-region']/li["+i+"]/a")).click();
+        element(pleaseWait).waitUntilVisible();
+        element(pleaseWait).waitUntilNotVisible();
+        String Str1 = getDriver().findElement(By.xpath("//table[@class='data-table']/tbody/tr[3]/td[2]")).getText();
+
+        if (element("//table[@class='data-table']/tbody/tr[3]/td").getText()=="No records found"){
+            assertThat("12",is ("12"));}
+            else
+            if (Str.equals(Str1)){
+                assertThat("12", is ("12")); }
+                else {
+                assertThat("12", is("11"));
+            }
+        //Thread.sleep(9000);
+    }
+
+
+    public void select_filter_city() throws InterruptedException {
+        WebElement element = getDriver().findElement(By.xpath("//th[@class='city-code']/ul/li/ul"));
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].setAttribute('style', arguments[1]);",element, "display: block;");
+        //int count = getDriver().findElements(By.xpath("//ul[@class='drop-down-menu-city filter-drop-down-menu drop-down-menu']/li/div/ul/li")).size();
+        //int i = (int)(Math.random()*(count-4)+4);
+        String Str = getDriver().findElement(By.xpath("//ul[@class='drop-down-menu-city filter-drop-down-menu drop-down-menu']/li/div/ul/li[5]/a")).getText();
+        getDriver().findElement(By.xpath("//ul[@class='drop-down-menu-city filter-drop-down-menu drop-down-menu']/li/div/ul/li[5]/a")).click();
+        element(pleaseWait).waitUntilVisible();
+        element(pleaseWait).waitUntilNotVisible();
+        String Str1 = getDriver().findElement(By.xpath("//table[@class='data-table']/tbody/tr[3]/td[2]")).getText();
+
+        Thread.sleep(9000);
     }
 }
